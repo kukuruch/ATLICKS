@@ -1,0 +1,14 @@
+{
+  "name": "atlicks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A lightweight, orange-themed messenger with one-hour in-memory messages.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#151311">
+  <meta name="description" content="ATLICKS — лёгкий мессенджер без лишнего трафика.">
+  <title>ATLICKS — messenger</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main id="authView" class="auth-view hidden">
+    <section class="auth-card" aria-labelledby="brandTitle">
+      <div class="brand brand-auth"><span class="brand-mark">A</span><span id="brandTitle">ATLICKS</span></div>
+      <p class="auth-subtitle">Только общение. Ничего лишнего.</p>
+      <div class="auth-tabs" role="tablist" aria-label="Авторизация">
+        <button class="auth-tab active" id="loginTab" type="button">Войти</button>
+        <button class="auth-tab" id="registerTab" type="button">Создать аккаунт</button>
+      </div>
+      <form id="authForm">
+        <label for="usernameInput">Ник</label>
+        <input id="usernameInput" name="username" autocomplete="username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" required placeholder="например, orange_cat">
+        <label for="passwordInput">Пароль</label>
+        <input id="passwordInput" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" required placeholder="Минимум 8 символов">
+        <p id="authError" class="form-error" role="alert"></p>
+        <button id="authSubmit" class="primary-btn full-btn" type="submit">Войти</button>
+      </form>
+      <p class="privacy-note">Сообщения автоматически удаляются через 1 час. Пароль хранится в виде криптографического хеша.</p>
+    </section>
+    <span class="auth-glow" aria-hidden="true"></span>
+  </main>
+
+  <main id="appView" class="app-shell hidden">
+    <aside id="sidebar" class="sidebar">
+      <header class="sidebar-header">
+        <div class="brand"><span class="brand-mark">A</span><span>ATLICKS</span></div>
+        <button id="themeToggle" class="icon-btn theme-btn" type="button" aria-label="Переключить тему" title="Переключить тему"><span id="themeIcon">☼</span></button>
+      </header>
+      <div class="profile-row">
+        <span class="avatar self-avatar" id="myAvatar">?</span>
+        <div class="profile-meta"><span class="profile-label">Вы вошли как</span><strong id="myName">username</strong></div>
+        <button id="logoutBtn" class="icon-btn logout-btn" type="button" title="Выйти" aria-label="Выйти">↗</button>
+      </div>
+      <div class="section-heading"><span>СООБЩЕНИЯ</span><span class="live-label"><i class="live-dot"></i> online</span></div>
+      <nav id="chatList" class="chat-list" aria-label="Чаты">
+        <button class="chat-item selected" data-chat="global" type="button">
+          <span class="avatar group-avatar">#</span><span class="chat-item-copy"><strong>Общий чат</strong><small>Все пользователи</small></span><span class="selected-bar"></span>
+        </button>
+        <div class="people-heading">ЛИЧНЫЕ СООБЩЕНИЯ</div>
+        <div id="userList" class="user-list"><div class="small-muted">Загружаем список…</div></div>
+      </nav>
+      <footer class="sidebar-footer"><span class="status-pulse"></span><span>Лёгкий режим</span><span class="footer-sep">·</span><span>без медиа</span></footer>
+    </aside>
+
+    <section class="chat-panel" aria-label="Окно чата">
+      <header class="chat-header">
+        <button id="backBtn" class="icon-btn back-btn" type="button" aria-label="К списку чатов">‹</button>
+        <span id="chatAvatar" class="avatar header-avatar group-avatar">#</span>
+        <div class="chat-title-wrap"><h1 id="chatTitle">Общий чат</h1><p id="chatSubtitle">Сообщения живут 1 час</p></div>
+        <span class="retention-chip"><span class="tiny-clock">◷</span> 1 час</span>
+      </header>
+
+      <div id="messageArea" class="message-area" aria-live="polite" aria-label="Сообщения">
+        <div class="empty-state"><span class="empty-symbol">↗</span><strong>Начни общение</strong><p>Сообщения исчезают через час — история не сохраняется.</p></div>
+      </div>
+      <div id="connectionNote" class="connection-note hidden">Нет соединения. Переподключаемся…</div>
+      <form id="messageForm" class="composer">
+        <label for="messageInput" class="visually-hidden">Сообщение</label>
+        <input id="messageInput" name="message" maxlength="1000" autocomplete="off" placeholder="Написать сообщение…" required>
+        <span id="charCount" class="char-count">0/1000</span>
+        <button id="sendBtn" class="send-btn" type="submit" aria-label="Отправить сообщение" title="Отправить"><span>➤</span></button>
+      </form>
+      <div class="chat-footnote"><span>Enter — отправить</span><span>Только текст · до 1000 символов</span></div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
